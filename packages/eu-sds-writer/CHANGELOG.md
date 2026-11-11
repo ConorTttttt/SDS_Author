@@ -1,0 +1,3 @@
+# v5.0 — EU SDS Writer only (11 November 2026)
+
+Created an independent `packages/eu-sds-writer/` package from the GitHub `SDS_Author` v4.0 baseline. Scope reduced to **INTAKE**, **RECOMMEND**, **DRAFT**, **REVIEW** of EU/EEA SDS documents only. Preserved Annex II 16-section structure, detailed Section 3 disclosure drafting rules, approved notebook retrieval safeguards, product-evidence handling, ECHA/REF-11 quality checks and the unchanged three regulatory/reference PDFs. Removed standalone SDS grouping, standalone Article 31 obligation analysis and CLP/transport/PCN calculation workflows. Added product intake and blank phrase-library templates plus 18 unexecuted authoring acceptance specifications. Original root v4 package is untouched.

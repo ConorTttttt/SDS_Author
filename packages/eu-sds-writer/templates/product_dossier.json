@@ -1,0 +1,68 @@
+{
+  "product": {
+    "identifier": null,
+    "substance_or_mixture": null,
+    "form": null,
+    "identified_uses": [],
+    "uses_advised_against": [],
+    "ufi_if_applicable": null
+  },
+  "market": {
+    "member_states": [],
+    "sds_language": null,
+    "issue_date": null,
+    "revision": null,
+    "supersedes": null
+  },
+  "supplier": {
+    "legal_name": null,
+    "address": null,
+    "telephone": null,
+    "competent_person_email": null,
+    "emergency_telephone": null,
+    "emergency_conditions": null
+  },
+  "classification": {
+    "status": "PENDING_VERIFICATION",
+    "source": null,
+    "clp_version": null,
+    "endpoint_decisions": [],
+    "h_codes": [],
+    "euh_codes": [],
+    "pictograms": [],
+    "signal_word": null,
+    "label_p_statements": []
+  },
+  "ingredients": [],
+  "substance_status_sources": [],
+  "physical_properties": {},
+  "workplace_exposure": {
+    "member_state_oels": [],
+    "union_oels": [],
+    "dnels": [],
+    "pnecs": [],
+    "uses": [],
+    "ppe_evidence": []
+  },
+  "first_aid_fire_spill_evidence": [],
+  "stability_incompatibility": [],
+  "toxicology": [],
+  "ecology": [],
+  "disposal": {
+    "source": null,
+    "method": null,
+    "packaging": null
+  },
+  "transport": {
+    "independently_verified": false,
+    "modes": {},
+    "source": null
+  },
+  "regulatory_status": [],
+  "approved_phrase_library": {
+    "name": null,
+    "revision": null,
+    "retrieval_verified": false
+  },
+  "documents": []
+}
