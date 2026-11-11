@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EU SDS reviewer finding v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "finding_id",
+    "finding_class",
+    "priority",
+    "review_track",
+    "sds_reference",
+    "issue",
+    "legal_basis",
+    "nonbinding_basis",
+    "applicability_test",
+    "proof_status",
+    "why_it_matters",
+    "fix_action",
+    "evidence_needed",
+    "owner",
+    "closure_test",
+    "resolution_status",
+    "related_sections"
+  ],
+  "properties": {
+    "finding_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9-]+$"
+    },
+    "finding_class": {
+      "enum": [
+        "LEGAL_NONCOMPLIANCE",
+        "POTENTIAL_NONCOMPLIANCE",
+        "RECOMMENDATION",
+        "NOT_VERIFIED"
+      ]
+    },
+    "priority": {
+      "enum": [
+        "CRITICAL",
+        "MAJOR",
+        "MINOR",
+        "ENHANCEMENT"
+      ]
+    },
+    "review_track": {
+      "enum": [
+        "DOCUMENT_COMPLETENESS",
+        "TECHNICAL_PLAUSIBILITY",
+        "LEGAL_VERSION_AND_JURISDICTION",
+        "SUPPLY_AND_REVISION_PROCESS",
+        "INTERNAL_WORDING_CONTROL"
+      ]
+    },
+    "sds_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "section",
+        "page",
+        "observed_text",
+        "absence_verified"
+      ],
+      "properties": {
+        "section": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "page": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "observed_text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "absence_verified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "issue": {
+      "type": "string",
+      "minLength": 5
+    },
+    "legal_basis": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "instrument",
+            "pinpoint",
+            "version_checked",
+            "applicable_date",
+            "member_state",
+            "binding_verified"
+          ],
+          "properties": {
+            "instrument": {
+              "type": "string",
+              "minLength": 3
+            },
+            "pinpoint": {
+              "type": "string",
+              "minLength": 2
+            },
+            "version_checked": {
+              "type": "string",
+              "minLength": 4
+            },
+            "applicable_date": {
+              "type": "string",
+              "format": "date"
+            },
+            "member_state": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "binding_verified": {
+              "type": "boolean"
+            },
+            "source_url_or_pdf_page": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "nonbinding_basis": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicability_test": {
+      "type": "string",
+      "minLength": 5
+    },
+    "proof_status": {
+      "enum": [
+        "COMPLETE",
+        "PARTIAL",
+        "UNAVAILABLE"
+      ]
+    },
+    "why_it_matters": {
+      "type": "string",
+      "minLength": 5
+    },
+    "fix_action": {
+      "type": "string",
+      "minLength": 5
+    },
+    "evidence_needed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 2
+    },
+    "closure_test": {
+      "type": "string",
+      "minLength": 5
+    },
+    "resolution_status": {
+      "enum": [
+        "OPEN",
+        "RESOLVED",
+        "PARTIALLY_RESOLVED",
+        "UNRESOLVED",
+        "NOT_VERIFIED"
+      ]
+    },
+    "related_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "finding_class": {
+            "const": "LEGAL_NONCOMPLIANCE"
+          }
+        },
+        "required": [
+          "finding_class"
+        ]
+      },
+      "then": {
+        "properties": {
+          "proof_status": {
+            "const": "COMPLETE"
+          },
+          "legal_basis": {
+            "type": "object",
+            "properties": {
+              "binding_verified": {
+                "const": true
+              }
+            },
+            "required": [
+              "binding_verified"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "finding_class": {
+            "const": "RECOMMENDATION"
+          }
+        },
+        "required": [
+          "finding_class"
+        ]
+      },
+      "then": {
+        "properties": {
+          "nonbinding_basis": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    }
+  ]
+}
